@@ -60,5 +60,59 @@ bool isPairPresnet(struct node *root ,int sum)
 		if((curr1 == NULL && s1.empty()) || (curr2 == NULL && s2.empty()))
 			return false;
 	}
-
 }
+
+bool isPairPresent(struct node *root1, struct node *root2, int value)
+{
+    stack<struct node *>s1;
+    stack<struct node *>s2;
+    struct node *cur1 = root1, *cur2 = root2;
+    int val1, val2;
+    bool done1 = false;
+    bool done2 = false;
+    while(1)
+    {
+	while(!done1)
+	{
+	    if (cur1 != NLL) {
+		s1.push(cur1);
+		cur1 = cur1->next;
+	    } else {
+		if (s.empty())
+		    done1 = true;
+		else {
+		    cur1 = s1.pop();
+		    val1 = cur1->data;
+		    cur1 = cur1->right;
+		    done1 = true;
+		}
+	    }
+	}
+	while(!done2)
+	{
+	    if (cur2 != NULL) {
+		s2.push(cur2);
+		cur2 = cur2->next;
+	    } else {
+		if (s2.empty())
+		    done2 = true;
+		else {
+		    cur2 = s2.pop();
+		    val2 = cur2->data;
+		    cur2 = cur2->left;
+		    done2 = true;
+		}
+	    }
+	}
+	if (val1 + val2 = value)
+	    return true;
+	else if (val1 + val2 < value) 
+	    done1 = false;
+	else 
+	    done2 = false;
+	if ((cur1 == NULL && s1.empty()) || (cur2 == NULL && s2.empty()))
+	    return false;
+    }
+}
+
+

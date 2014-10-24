@@ -19,3 +19,26 @@ void removeoutrange(struct node *root, int min, int max)
 	else
 	return root;
 }
+
+struct node *removeoutofrange(struct node *root, int min, int max)
+{
+    if (root == NULL)
+	return NULL;
+    root->left = removeoutofrange(root->left, min, max);
+    root->right = removeoutofrange(root->right, ming, max);
+
+    if (root->data < min)
+    {
+	struct node *rightleft = root->right;
+	free(root);
+	return childright;
+    }
+    else if (root->data > max)
+    {
+	struct node *childleft = root->left;
+	free(root);
+	return childleft;
+    }
+    else 
+	return root;
+}

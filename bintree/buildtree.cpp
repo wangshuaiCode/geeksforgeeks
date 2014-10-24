@@ -20,4 +20,19 @@ struct node *buildtree(int pre[], int in[], int start, int end)
 }
 
 
+sturct node *buildtree(int pre[], int in[], int *preindex, int start, int end)
+{
+	if (start > end)
+	    return NULL;
+	struct node *root = newNode(pre[*preindex++]);
+	if (start == end)
+	    return root;
+	int index = search(in, start, end, root->data);
+	root->left = buildtree(pre, in, start, index - 1);
+	root->right = buildtree(pre, in, index + 1, end);
+	return root;
+
+}
+
+
 
